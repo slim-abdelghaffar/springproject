@@ -1,26 +1,26 @@
 package FirstApp.entity;
 
 
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation implements Serializable {
+public class Universite implements Serializable {
     @Id
-    private String idReservation;
-    @Temporal(TemporalType.DATE)
-    private Date anneeUniversitaire;
-    private boolean estValide;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idUniversite;
+    private String nomUniversite;
+    private String adrese;
 }
