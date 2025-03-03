@@ -1,0 +1,1 @@
+Dans la nouvelle branche, j'ai refait le projet car j'ai rencontré des problèmes de connectivité avec la base de données ainsi qu'avec les dépendances du projet. J'ai donc recréé le projet dans la deuxième branche. Il y a une différence dans le nommage par rapport à la première branche. Je vais continuer à déposer le projet ici. Merci
