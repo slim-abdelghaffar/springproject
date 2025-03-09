@@ -1,5 +1,8 @@
 package com.esprit.firstspringbootproject.entities;
 
+import com.esprit.firstspringbootproject.entities.Bloc;
+import com.esprit.firstspringbootproject.entities.Reservation;
+import com.esprit.firstspringbootproject.entities.TypeChambre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,8 +15,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Chambre implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +25,7 @@ public class Chambre implements Serializable {
     @Enumerated(EnumType.STRING)
     private TypeChambre typeC;
     @ManyToOne
-    Bloc bloc;
+    private Bloc bloc;
     @OneToMany
-    private Set<Reservation> Reservations;
+    private Set<Reservation> reservations;
 }

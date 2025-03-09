@@ -3,30 +3,27 @@ package com.esprit.firstspringbootproject.services;
 import com.esprit.firstspringbootproject.entities.Etudiant;
 import com.esprit.firstspringbootproject.repository.IEtudiantRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 @AllArgsConstructor
 public class EtudiantService implements IEtudiantService{
-    IEtudiantRepository etudiantRepository;
 
+    @Autowired
+    IEtudiantRepository etudiantRepository;
     @Override
     public List<Etudiant> retrieveAllEtudiants() {
         return (List<Etudiant>) etudiantRepository.findAll();
     }
 
-
     @Override
     public List<Etudiant> addEtudiants(List<Etudiant> etudiants) {
-      //  return etudiantRepository.saveAll(etudiants);
-        List<Etudiant> savedEtudiants = new ArrayList<>();
-        for (Etudiant etudiant : etudiants) {
-            savedEtudiants.add(etudiantRepository.save(etudiant));
-        }
-        return savedEtudiants;
+        return (List<Etudiant>) etudiantRepository.saveAll(etudiants);
     }
 
     @Override
@@ -41,6 +38,6 @@ public class EtudiantService implements IEtudiantService{
 
     @Override
     public void removeEtudiant(long idEtudiant) {
-    etudiantRepository.deleteById(idEtudiant);
+        etudiantRepository.deleteById(idEtudiant);
     }
 }

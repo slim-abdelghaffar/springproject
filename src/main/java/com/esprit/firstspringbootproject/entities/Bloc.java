@@ -12,8 +12,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Bloc implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class Bloc implements Serializable {
     private String nomBloc;
     private long capaciteBloc;
     @ManyToOne
-    Foyer foyer;
-    @OneToMany(mappedBy="bloc")
-    private Set<Chambre> Chambres;
+    private Foyer foyer;
+    @OneToMany(mappedBy = "bloc")
+    private Set<Chambre> chambres;
 }

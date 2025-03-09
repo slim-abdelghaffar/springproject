@@ -4,27 +4,34 @@ import com.esprit.firstspringbootproject.entities.Foyer;
 import com.esprit.firstspringbootproject.entities.Reservation;
 import com.esprit.firstspringbootproject.services.IReservationService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reservation")
 @AllArgsConstructor
+@RequestMapping("/reservation")
 public class ReservationController {
+    @Autowired
     IReservationService reservationService;
-    @GetMapping("/getAll")
-    public List<Reservation> getAll(){
+
+    @GetMapping("/dispaly-reservations")
+    public List<Reservation> displayreservation(){
         return reservationService.retrieveAllReservation();
     }
-    @PutMapping("/{id}")
-    public Reservation updateReservation(@PathVariable String id, @RequestBody Reservation r) {
+
+    @PutMapping("/update-reservation")
+    public Reservation updatereservation(Reservation r){
         return reservationService.updateReservation(r);
     }
-
-    @GetMapping("/{id}")
-    public Reservation retrieveReservation(@PathVariable String id) {
-        return reservationService.retrieveReservation(id);
+    @GetMapping("/dispaly-reservationbyid/{id}")
+    public Reservation displayreservationbyid(@PathVariable("id") String idReservation){
+        return reservationService.retrieveReservation(idReservation);
     }
-
+    @GetMapping("/reservations/{anneeUniversitaire}/{nomUniversite}")
+    public List<Reservation> getReservationsParAnneeUniversitaire(@PathVariable Date anneeUniversitaire, @PathVariable String nomUniversite) {
+        return reservationService.getReservationParAnneeUniversitaireEtNomUniversite(anneeUniversitaire, nomUniversite);
+    }
 }

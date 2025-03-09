@@ -3,35 +3,40 @@ package com.esprit.firstspringbootproject.controller;
 import com.esprit.firstspringbootproject.entities.Bloc;
 import com.esprit.firstspringbootproject.services.IBlocService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
-@RequestMapping("/bloc")
 @AllArgsConstructor
+@RequestMapping("/bloc")
 public class BlocController {
-IBlocService blocService;
-@PostMapping("addBloc")
-public Bloc addBloc(@RequestBody Bloc b){return blocService.addBloc(b);}
-    @GetMapping("/getAll")
-    public List<Bloc> getAll(){
-        return blocService.retrieveBlocs();
+    @Autowired
+    IBlocService blocService;
+
+    @PostMapping("/add-bloc")
+    public Bloc addbloc(@RequestBody Bloc bloc){
+        return blocService.addBloc(bloc);
     }
-    @PutMapping("/{id}")
-    public Bloc updateBloc(@PathVariable Long id, @RequestBody Bloc bloc) {
+    @PutMapping("/update-bloc")
+    public Bloc updatebloc(@RequestBody Bloc bloc){
         return blocService.updateBloc(bloc);
     }
 
-    @GetMapping("/{id}")
-    public Bloc retrieveBloc(@PathVariable Long id) {
-        return blocService.retrieveBloc(id);
+    @GetMapping("/display-bloc")
+    public List<Bloc> displaybloc() {
+        return blocService.retrieveBlocs();
     }
 
-    @DeleteMapping("/{id}")
-    public void removeBloc(@PathVariable Long id) {
-        blocService.removeBloc(id);
+    @GetMapping("/display-blocbyid/{id}")
+    public Bloc displayblocbyid(@PathVariable("id") long idBloc) {
+        return blocService.retrieveBloc(idBloc);
+    }
+
+    @DeleteMapping("/delete-bloc/{id}")
+    public void deletebloc(@PathVariable("id") long idBloc) {
+        blocService.removeBloc(idBloc);
     }
 
 }
