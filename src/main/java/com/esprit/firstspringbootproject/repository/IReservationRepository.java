@@ -13,4 +13,5 @@ import java.util.List;
 public interface IReservationRepository extends JpaRepository<Reservation,String> {
     @Query("SELECT r FROM Reservation r WHERE r.anneeUniversitaire = :anneeUniversitaire AND r.estValide = true")
     List<Reservation> findReservationsByAnneeUniversitaire(Date anneeUniversitaire);
+
 }

@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+
 @Entity
 @Getter
 @Setter
@@ -20,7 +21,9 @@ public class Reservation implements Serializable {
     private String idReservation;
     @Temporal(TemporalType.DATE)
     private Date anneeUniversitaire;
-    private boolean estvalide;
+    private boolean estValide;
     @ManyToMany
     private Set<Etudiant> etudiants;
+    @ManyToOne
+    private Chambre chambre;
 }

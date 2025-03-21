@@ -1,6 +1,7 @@
 package com.esprit.firstspringbootproject.controller;
 
 import com.esprit.firstspringbootproject.entities.Etudiant;
+import com.esprit.firstspringbootproject.entities.Foyer;
 import com.esprit.firstspringbootproject.entities.Universite;
 import com.esprit.firstspringbootproject.services.IUniversiteService;
 import lombok.AllArgsConstructor;
@@ -39,6 +40,16 @@ public class UniversitieController {
     @PutMapping("/affecter-foyer/{idFoyer}/{nomUniversite}")
     public Universite affecterFoyerAUniversite(@PathVariable long idFoyer, @PathVariable String nomUniversite) {
         return universiteService.affecterFoyerAUniversite(idFoyer, nomUniversite);
+    }
+
+    @PutMapping("/desaffecter-foyer/{idUniversite}")
+    public Universite desaffecterFoyerAUniversite(@PathVariable long idUniversite) {
+        return universiteService.desaffecterFoyerAUniversite(idUniversite);
+    }
+
+    @PostMapping("/ajouter-foyer/{idUniversite}")
+    public Universite ajouterFoyerEtAffecterAUniversite(@RequestBody Foyer foyer, @PathVariable long idUniversite) {
+        return universiteService.ajouterFoyerEtAffecterAUniversite(foyer, idUniversite);
     }
 
 

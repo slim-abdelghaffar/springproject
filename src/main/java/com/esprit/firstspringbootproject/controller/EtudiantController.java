@@ -2,33 +2,41 @@ package com.esprit.firstspringbootproject.controller;
 import com.esprit.firstspringbootproject.entities.Etudiant;
 import com.esprit.firstspringbootproject.services.IEtudiantService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/etudiant")
 @AllArgsConstructor
+@RequestMapping("/etudiant")
 public class EtudiantController {
+    @Autowired
     IEtudiantService etudiantService;
-        @PostMapping("addEtudiant")
-        public Etudiant addEtudiant(@RequestBody List<Etudiant> e){return (Etudiant) etudiantService.addEtudiants(e);}
-        @GetMapping("/getAll")
-    public List<Etudiant> getAll(){
-        return etudiantService.retrieveAllEtudiants();
+
+    @PostMapping("/add-etudiants")
+    public List<Etudiant> addEtudiants(@RequestBody List<Etudiant> etudiants) {
+        return etudiantService.addEtudiants(etudiants);
     }
-    @PutMapping("/{id}")
-    public Etudiant updateEtudiant(@PathVariable Long id, @RequestBody Etudiant e) {
+
+    @PutMapping("/update-etudiant")
+    public Etudiant updateetudiant(@RequestBody Etudiant e){
         return etudiantService.updateEtudiant(e);
     }
-    @GetMapping("/{id}")
-    public Etudiant retrieveEtudiant(@PathVariable Long id) {
-        return etudiantService.retrieveEtudiant(id);
+
+    @GetMapping("/display-etudiant")
+    public List<Etudiant> displayetudiants(){
+        return etudiantService.retrieveAllEtudiants();
     }
-    @DeleteMapping("/{id}")
-    public void removeBloc(@PathVariable Long id) {
-        etudiantService.removeEtudiant(id);
+    @GetMapping("/display-etudiantbyid/{id}")
+    public Etudiant displyetudiantbyid(@PathVariable("id") long idEtudiant){
+        return etudiantService.retrieveEtudiant(idEtudiant);
+    }
+
+    @DeleteMapping("/delete-etudiantbyid/{id}")
+    public void deleteetudiant(@PathVariable("id") long idEtudiant){
+        etudiantService.removeEtudiant(idEtudiant);
     }
 
 }

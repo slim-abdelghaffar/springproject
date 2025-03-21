@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 
+
 public interface IChambreRepository extends JpaRepository<Chambre,Long> {
     @Query("SELECT c FROM Chambre c WHERE c.bloc.foyer.universite.nomUniversite = :nomUniversite AND c.typeC = :type AND c.reservations IS EMPTY")
     List<Chambre> findChambresNonReservees(String nomUniversite, TypeChambre type);
@@ -19,5 +20,7 @@ public interface IChambreRepository extends JpaRepository<Chambre,Long> {
     List<Chambre> findChambresParBlocEtTypeJPQL(long idBloc, TypeChambre typeC);
 
     List<Chambre> findByBlocIdBlocAndTypeC(long idBloc, TypeChambre typeC);
+
+    List<Chambre> findByNumeroChambreIn(List<Long> numChambres);
 
 }

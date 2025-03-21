@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/bloc")
@@ -37,6 +38,11 @@ public class BlocController {
     @DeleteMapping("/delete-bloc/{id}")
     public void deletebloc(@PathVariable("id") long idBloc) {
         blocService.removeBloc(idBloc);
+    }
+
+    @PutMapping("/affecter-chambres/{idBloc}")
+    public Bloc affecterChambresABloc(@RequestBody List<Long> numChambres, @PathVariable long idBloc) {
+        return blocService.affecterChambresABloc(numChambres, idBloc);
     }
 
 }
